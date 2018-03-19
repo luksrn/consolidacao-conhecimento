@@ -9,11 +9,11 @@ class Negociacao {
     }
     
     get volume(){
-        return this.quantidade * this.valor;
+        return this._quantidade * this._valor;
     }
 
     get data(){
-        return this._data;
+        return new Date(this._data.getTime());
     }
 
     get quantidade(){

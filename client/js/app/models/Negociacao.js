@@ -9,7 +9,7 @@ class Negociacao {
     }
     
     get volume(){
-        return this._quantidade * this._valor;
+        return this.quantidade * this.valor;
     }
 
     get data(){
@@ -21,6 +21,6 @@ class Negociacao {
     }
 
     get valor() {
-        return this.valor;
+        return this._valor;
     }
 }

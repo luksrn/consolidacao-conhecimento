@@ -1,12 +1,10 @@
 class ListaNegociacoes {
-    constructor(ctx){
+    constructor(){
         this._negociacoes = []
-        this._ctx = ctx;
     }
 
     adicionar(negociacao){
         this._negociacoes.push(negociacao);
-        this._ctx(this);
     }
 
     get negociacoes(){
@@ -15,6 +13,5 @@ class ListaNegociacoes {
 
     limpar(){
         this._negociacoes = []
-        this._ctx(this);
     }
 }

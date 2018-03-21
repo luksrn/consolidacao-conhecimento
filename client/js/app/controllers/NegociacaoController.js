@@ -9,12 +9,12 @@ class NegociacaoController {
         this._listaNegociacoes = new Bind(
             new ListaNegociacoes(),
             new NegociacaoView($('#negociacoesView')),
-            ['adicionar','limpar']);
+            'adicionar','limpar');
         
         this._mensagem = new Bind(
             new Mensagem(),
             new MensagemView($('#mensagemView')),
-            ['texto']
+            'texto'
         );
     }
 

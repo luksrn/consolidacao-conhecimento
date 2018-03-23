@@ -30,10 +30,15 @@ class NegociacaoController {
     }
 
     importar(){
-        
-        this._negociacaoService.obterNegociacoes()
-            .then( negociacoes => 
-                negociacoes.forEach ( n => this._listaNegociacoes.adicionar(n) )
+
+        Promise.all([
+            this._negociacaoService.obterNegociacoes(),
+            this._negociacaoService.obterNegociacoesDaSemanaAnterior(),
+            this._negociacaoService.obterNegociacoesDaSemanaRetrasada() 
+        ]).then( negociacoes => 
+                negociacoes
+                    .reduce((flat, array) => flat.concat(array), [])
+                    .forEach ( n => this._listaNegociacoes.adicionar(n) )
             )
             .catch( erro => 
                 this._mensagem.texto = erro

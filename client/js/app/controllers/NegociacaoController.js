@@ -16,6 +16,8 @@ class NegociacaoController {
             new MensagemView($('#mensagemView')),
             'texto'
         );
+
+        this._negociacaoService = new NegociacaoService();
     }
 
     adicionar(event){
@@ -28,13 +30,14 @@ class NegociacaoController {
     }
 
     importar(){
-        let negociacaoService = new NegociacaoService();
-        negociacaoService.obterNegociacoes((err,negociacoes) => {
-            if(err){
-                this._mensagem.texto = err;
-            }
-            negociacoes.forEach ( n => this._listaNegociacoes.adicionar(n) );
-        });
+        
+        this._negociacaoService.obterNegociacoes()
+            .then( negociacoes => 
+                negociacoes.forEach ( n => this._listaNegociacoes.adicionar(n) )
+            )
+            .catch( erro => 
+                this._mensagem.texto = erro
+            );
     }
 
     _novaNegociacao(){

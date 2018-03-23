@@ -27,6 +27,16 @@ class NegociacaoController {
         this._limparFormulario();
     }
 
+    importar(){
+        let negociacaoService = new NegociacaoService();
+        negociacaoService.obterNegociacoes((err,negociacoes) => {
+            if(err){
+                this._mensagem.texto = err;
+            }
+            negociacoes.forEach ( n => this._listaNegociacoes.adicionar(n) );
+        });
+    }
+
     _novaNegociacao(){
         return new Negociacao(
             DataHelper.textoParaData(this._inputData),
